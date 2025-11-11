@@ -22,15 +22,15 @@ export default async function handler(req, res) {
 
     const userPrompt = messages[messages.length - 1].content;
     const apiKey = process.env.GOOGLE_API_KEY;
-    const model = "gemini-1.5-flash"; // stable & fast
-
+    const model = "gemini-1.5-flash-latest";
+  
     const payload = {
       contents: [{ parts: [{ text: userPrompt }] }],
       generationConfig: { temperature: 0.8, maxOutputTokens: 512 }
     };
 
     const response = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`,
+      `https://generativelanguage.googleapis.com/v1/models/${model}:generateContent?key=${apiKey}`,
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
